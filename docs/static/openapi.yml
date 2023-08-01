@@ -40,6 +40,42 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /blog/blog/post_count:
+    get:
+      summary: Queries a PostCount by index.
+      operationId: BlogBlogPostCount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              PostCount:
+                type: object
+                properties:
+                  count:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /cosmos/auth/v1beta1/account_info/{address}:
     get:
       summary: AccountInfo queries account info which is common to all account types.
@@ -46477,6 +46513,21 @@ definitions:
   blog.blog.Params:
     type: object
     description: Params defines the parameters for the module.
+  blog.blog.PostCount:
+    type: object
+    properties:
+      count:
+        type: string
+        format: uint64
+  blog.blog.QueryGetPostCountResponse:
+    type: object
+    properties:
+      PostCount:
+        type: object
+        properties:
+          count:
+            type: string
+            format: uint64
   blog.blog.QueryParamsResponse:
     type: object
     properties:

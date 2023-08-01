@@ -1,0 +1,9 @@
+syntax = "proto3";
+package blog.blog;
+
+option go_package = "blog/x/blog/types";
+
+message PostCount {
+  uint64 count = 1; 
+  
+}
