@@ -7,6 +7,7 @@ import (
 	"blog/testutil/nullify"
 	"blog/x/blog"
 	"blog/x/blog/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -14,8 +15,16 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
-		PostCount: &types.PostCount{
+		PostCount: types.PostCount{
 			Count: 69,
+		},
+		StoredPostList: []types.StoredPost{
+			{
+				Index: "0",
+			},
+			{
+				Index: "1",
+			},
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
@@ -29,5 +38,6 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.Equal(t, genesisState.PostCount, got.PostCount)
+	require.ElementsMatch(t, genesisState.StoredPostList, got.StoredPostList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"blog/x/blog/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,12 +23,34 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
-				PostCount: &types.PostCount{
+				PostCount: types.PostCount{
 					Count: 83,
+				},
+				StoredPostList: []types.StoredPost{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
 				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated storedPost",
+			genState: &types.GenesisState{
+				StoredPostList: []types.StoredPost{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	}

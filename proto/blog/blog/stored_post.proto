@@ -1,0 +1,12 @@
+syntax = "proto3";
+package blog.blog;
+
+option go_package = "blog/x/blog/types";
+
+message StoredPost {
+  string index = 1; 
+  string title = 2; 
+  string body = 3; 
+  
+}
+

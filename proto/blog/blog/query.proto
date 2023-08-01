@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "blog/blog/params.proto";
 import "blog/blog/post_count.proto";
+import "blog/blog/stored_post.proto";
 
 option go_package = "blog/x/blog/types";
 
@@ -24,6 +25,16 @@ service Query {
     option (google.api.http).get = "/blog/blog/post_count";
   
   }
+  
+  // Queries a list of StoredPost items.
+  rpc StoredPost    (QueryGetStoredPostRequest) returns (QueryGetStoredPostResponse) {
+    option (google.api.http).get = "/blog/blog/stored_post/{index}";
+  
+  }
+  rpc StoredPostAll (QueryAllStoredPostRequest) returns (QueryAllStoredPostResponse) {
+    option (google.api.http).get = "/blog/blog/stored_post";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -39,5 +50,22 @@ message QueryGetPostCountRequest {}
 
 message QueryGetPostCountResponse {
   PostCount PostCount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetStoredPostRequest {
+  string index = 1;
+}
+
+message QueryGetStoredPostResponse {
+  StoredPost storedPost = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllStoredPostRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllStoredPostResponse {
+  repeated StoredPost                             storedPost = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
