@@ -21,3 +21,11 @@ func KeyPrefix(p string) []byte {
 const (
 	PostCountKey = "PostCount/value/"
 )
+
+const (
+	PostCreatedEventType = "new-post-created"
+	PostCreatedCreator = "creator"
+	PostCreatedPostindex = "post-index"
+	PostCreatedTitle = "title"
+	PostCreatedBody = "body"
+)
