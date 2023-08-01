@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"blog/x/blog/types"
+
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
@@ -19,7 +20,6 @@ func (k Keeper) SetStoredPost(ctx sdk.Context, storedPost types.StoredPost) {
 func (k Keeper) GetStoredPost(
 	ctx sdk.Context,
 	index string,
-
 ) (val types.StoredPost, found bool) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.StoredPostKeyPrefix))
 
@@ -38,7 +38,6 @@ func (k Keeper) GetStoredPost(
 func (k Keeper) RemoveStoredPost(
 	ctx sdk.Context,
 	index string,
-
 ) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.StoredPostKeyPrefix))
 	store.Delete(types.StoredPostKey(

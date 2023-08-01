@@ -8,6 +8,7 @@ import (
 	"blog/testutil/nullify"
 	"blog/x/blog/keeper"
 	"blog/x/blog/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )
@@ -39,6 +40,7 @@ func TestStoredPostGet(t *testing.T) {
 		)
 	}
 }
+
 func TestStoredPostRemove(t *testing.T) {
 	keeper, ctx := keepertest.BlogKeeper(t)
 	items := createNStoredPost(keeper, ctx, 10)

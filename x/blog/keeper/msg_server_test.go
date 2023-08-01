@@ -7,6 +7,7 @@ import (
 	keepertest "blog/testutil/keeper"
 	"blog/x/blog/keeper"
 	"blog/x/blog/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )

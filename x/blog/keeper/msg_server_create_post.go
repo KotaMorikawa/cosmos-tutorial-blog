@@ -22,7 +22,7 @@ func (k msgServer) CreatePost(goCtx context.Context, msg *types.MsgCreatePost) (
 	storedPost := types.StoredPost{
 		Index: newIndex,
 		Title: msg.Title,
-		Body: msg.Body,
+		Body:  msg.Body,
 	}
 
 	err := storedPost.Validate()
@@ -36,10 +36,10 @@ func (k msgServer) CreatePost(goCtx context.Context, msg *types.MsgCreatePost) (
 	k.Keeper.SetPostCount(ctx, postCount)
 
 	ctx.EventManager().EmitEvent(
-		sdk.NewEvent(types.PostCreatedEventType, 
-			sdk.NewAttribute(types.PostCreatedCreator, msg.Creator), 
-			sdk.NewAttribute(types.PostCreatedPostindex, newIndex), 
-			sdk.NewAttribute(types.PostCreatedTitle, msg.Title), 
+		sdk.NewEvent(types.PostCreatedEventType,
+			sdk.NewAttribute(types.PostCreatedCreator, msg.Creator),
+			sdk.NewAttribute(types.PostCreatedPostindex, newIndex),
+			sdk.NewAttribute(types.PostCreatedTitle, msg.Title),
 			sdk.NewAttribute(types.PostCreatedBody, msg.Body),
 		),
 	)

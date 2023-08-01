@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"blog/x/blog/types"
+
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
@@ -31,7 +32,6 @@ func (k Keeper) StoredPostAll(goCtx context.Context, req *types.QueryAllStoredPo
 		storedPosts = append(storedPosts, storedPost)
 		return nil
 	})
-
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
